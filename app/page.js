@@ -1,17 +1,25 @@
-import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
-import VehicleSolutionsSection from '@/components/VehicleSolutionsSection';
 import ContactSection from '@/components/ContactSection';
-import Footer from '@/components/Footer';
+import VehicleSolutionsSection from '@/components/VehicleSolutionsSection';
 
+/**
+ * Home Page
+ * - Hero section with video background
+ * - Contact section with form
+ * 
+ * Navbar & Footer are from root layout (automatically included)
+ */
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Navbar />
-      {/* <HeroSection />
+    <>
+      {/* Hero Section - Video background with animated text */}
+      <HeroSection />
+
       <VehicleSolutionsSection />
+
+      {/* Contact Section - Contact info + form */}
       <ContactSection />
-      <Footer /> */}
-    </main>
+
+    </>
   );
 }

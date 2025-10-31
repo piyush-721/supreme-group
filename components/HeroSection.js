@@ -2,89 +2,88 @@
 
 import { motion } from 'framer-motion';
 
+/**
+ * HeroSection Component (Tailwind-only)
+ */
 export default function HeroSection() {
+  const animationVariants = {
+    line1: {
+      initial: { opacity: 0, y: -20 },
+      animate: { opacity: 1, y: 0 },
+      transition: { duration: 0.8, delay: 0.2 },
+    },
+    line2: {
+      initial: { opacity: 0, y: 30 },
+      animate: { opacity: 1, y: 0 },
+      transition: { duration: 1, delay: 0.4 },
+    },
+    line3: {
+      initial: { opacity: 0, y: 20 },
+      animate: { opacity: 1, y: 0 },
+      transition: { duration: 1, delay: 0.6 },
+    },
+  };
+
   return (
-    <section className="relative h-screen w-full overflow-hidden">
-      {/* Video Background */}
+    <section
+      className="relative w-full overflow-hidden -mt-[60px] h-[925px]"
+      aria-label="Hero section with video background"
+    >
+      {/* Background Video */}
       <div className="absolute inset-0 w-full h-full">
         <video
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
+          poster="/assets/images/fallback.jpg"
           className="w-full h-full object-cover"
+          aria-label="Automotive background video"
         >
-          <source src="/assets/videos/hero-background.mp4" type="video/mp4" />
+          <source src="/assets/videos/automotive.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        
+
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/60" aria-hidden="true"></div>
       </div>
 
-      {/* Content */}
+      {/* Text Content */}
       <div className="relative z-10 h-full flex items-center justify-center">
-        <div className="container mx-auto px-4 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="text-white text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
-          >
-            Innovation in Every Detail
-          </motion.h1>
+        <div className="text-center px-4 md:px-8 lg:px-14">
+          {/* Line 1 */}
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="text-white text-lg md:text-xl lg:text-2xl mb-8 max-w-3xl mx-auto"
+            {...animationVariants.line1}
+            className="text-white font-manrope font-normal leading-none tracking-[0%]"
           >
-            Leading the future of automotive excellence
+            <span className="block text-base md:text-lg lg:text-[22px] mb-4 md:mb-5 lg:mb-6">
+              Performance in motion
+            </span>
           </motion.p>
-          <motion.a
-            href="#contact"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block bg-supreme-cyan hover:bg-cyan-500 text-white font-semibold px-8 md:px-12 py-3 md:py-4 rounded-full text-base md:text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
-            aria-label="Explore our solutions"
+
+          {/* Line 2 */}
+          <motion.h1
+            {...animationVariants.line2}
+            className="text-white font-manrope font-semibold leading-[100%] tracking-[-0.5%] mb-0"
           >
-            Explore Our Solutions
-          </motion.a>
+            <span className="block text-2xl md:text-4xl lg:text-[48px] leading-tight md:leading-tight lg:leading-[58px]">
+              Soft Trims and{' '}
+              <span className="text-[#00BFFF]">NVH Solutions</span>
+            </span>
+          </motion.h1>
+
+          {/* Line 3 */}
+          <motion.p
+            {...animationVariants.line3}
+            className="text-white font-manrope font-light"
+          >
+            <span className="block text-xl md:text-3xl lg:text-[48px] leading-tight md:leading-tight lg:leading-[58px] mt-0 md:-mt-2 lg:-mt-[5px]">
+              for seamless rides
+            </span>
+          </motion.p>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="text-white"
-          aria-hidden="true"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
